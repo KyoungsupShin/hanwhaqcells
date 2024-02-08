@@ -21,7 +21,7 @@ from pathlib import Path
 import json
 
 
-wiki_loader = download_loader("WikipediaReader")
+wiki_loader = download_loader("WikipediaReader", custom_path='./wikipedia')
 wiki_loader = wiki_loader()
 web_cracker = RemoteDepthReader()
 web_surfer = GoogleSearchToolSpec(key = 'AIzaSyBZaepCCskamC_j3aBLnUNfOTRcpBgNteU',
