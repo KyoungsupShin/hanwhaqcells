@@ -30,6 +30,7 @@ os.environ['ACTIVELOOP_TOKEN'] = 'eyJhbGciOiJIUzUxMiIsImlhdCI6MTcwNTIxMjk0MCwiZX
 
 st.session_state.embedding = AzureOpenAIEmbeddings(azure_deployment="embedding_model")
 st.session_state.llm = AzureChatOpenAI(temperature = 0, deployment_name="test_gpt")
+
 service_context = ServiceContext.from_defaults(llm=st.session_state.llm,embed_model=st.session_state.embedding,)
 
 
