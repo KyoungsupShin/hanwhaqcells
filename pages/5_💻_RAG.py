@@ -22,7 +22,7 @@ from llama_index.vector_stores.types import (
 )
 import sys
 sys.path.append("utils")
-from web_surf import GoogleSearchToolSpec
+from utils.web_surf import GoogleSearchToolSpec
 
 
 nest_asyncio.apply()
