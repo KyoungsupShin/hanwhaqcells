@@ -10,6 +10,9 @@ import nest_asyncio
 from llama_index.vector_stores import ChromaVectorStore
 from llama_index import StorageContext, load_index_from_storage, VectorStoreIndex, set_global_service_context, VectorStoreIndex, SimpleDirectoryReader, ServiceContext
 from llama_index.schema import Document, TextNode
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import chromadb
 import numpy as np
 import datetime as dt
