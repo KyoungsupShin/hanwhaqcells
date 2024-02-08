@@ -20,7 +20,6 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import chromadb
-
 wiki_loader = download_loader("WikipediaReader", custom_path='./wikipedia')
 wiki_loader = wiki_loader()
 
