@@ -1,4 +1,4 @@
-llama_index
+llama_index==0.9.44
 wikipedia
 pandas
 langchain_openai==0.0.5

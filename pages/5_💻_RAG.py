@@ -38,13 +38,8 @@ os.environ['ACTIVELOOP_TOKEN'] = 'eyJhbGciOiJIUzUxMiIsImlhdCI6MTcwNTIxMjk0MCwiZX
 
 embedding = AzureOpenAIEmbeddings(azure_deployment="embedding_model")
 llm = AzureChatOpenAI(temperature = 0, deployment_name="test_gpt")
-# service_context = ServiceContext.from_defaults(llm=llm,embed_model=embedding,)
-# set_global_service_context(service_context)
-# service_context = llama_index.set_global_service_context(service_context)
-# service_context = ServiceContext.from_defaults(
-#   llm=llm,
-#   embed_model=embedding,
-# )
+
+
 web_surfer = GoogleSearchToolSpec(key = 'AIzaSyBZaepCCskamC_j3aBLnUNfOTRcpBgNteU',
                         engine = 'd18770dfc867442e9',
                         num = 5)
