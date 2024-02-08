@@ -21,6 +21,9 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import chromadb
 
+wiki_loader = download_loader("WikipediaReader",custom_path='./')
+wiki_loader = wiki_loader()
+
 os.environ["AZURE_OPENAI_ENDPOINT"] = "https://qcells-us-test-openai.openai.azure.com/"
 os.environ["AZURE_OPENAI_API_KEY"] = "70d67d8dd17f436b9c1b4e38d2558d50"
 os.environ["OPENAI_API_VERSION"] = "2023-07-01-preview"
@@ -126,8 +129,6 @@ def org_news_to_summary(org_news_txt):
 embedding = AzureOpenAIEmbeddings(azure_deployment="embedding_model")
 st.session_state.llm = AzureChatOpenAI(temperature = 0, deployment_name="test_gpt")
 service_context = ServiceContext.from_defaults(llm=st.session_state.llm,embed_model=embedding,)
-wiki_loader = download_loader("WikipediaReader")
-wiki_loader = wiki_loader()
 
 
 if "messages" not in st.session_state.keys(): # Initialize the chat message history
