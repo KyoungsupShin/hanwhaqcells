@@ -9,12 +9,12 @@ import os
 import wikipedia
 from llama_index import download_loader
 from llama_index.vector_stores import ChromaVectorStore
-from llama_index import StorageContext, load_index_from_storage, VectorStoreIndex, set_global_service_context, VectorStoreIndex, SimpleDirectoryReader, ServiceContext
 from random import randint
 from langchain_openai import AzureOpenAIEmbeddings, AzureChatOpenAI
 from langchain.output_parsers import ResponseSchema
 from langchain.output_parsers import StructuredOutputParser
 from langchain.prompts import ChatPromptTemplate
+from llama_index import StorageContext, load_index_from_storage, VectorStoreIndex, set_global_service_context, VectorStoreIndex, SimpleDirectoryReader, ServiceContext
 from langchain.memory import ChatMessageHistory
 __import__('pysqlite3')
 import sys
@@ -27,6 +27,11 @@ os.environ["AZURE_OPENAI_ENDPOINT"] = "https://qcells-us-test-openai.openai.azur
 os.environ["AZURE_OPENAI_API_KEY"] = "70d67d8dd17f436b9c1b4e38d2558d50"
 os.environ["OPENAI_API_VERSION"] = "2023-07-01-preview"
 os.environ['ACTIVELOOP_TOKEN'] = 'eyJhbGciOiJIUzUxMiIsImlhdCI6MTcwNTIxMjk0MCwiZXhwIjoxNzM2ODM1MzM1fQ.eyJpZCI6Imt5b3VuZ3N1cDg4MDMifQ.KAo14SA3CNMkK68YG9pFiIrShZBqoK9ElOMfyQh8HiBfn9rsEdZneTLQOBQi1kHBjzndbYtOju-FceXx_Rv83A'
+
+st.session_state.embedding = AzureOpenAIEmbeddings(azure_deployment="embedding_model")
+st.session_state.llm = AzureChatOpenAI(temperature = 0, deployment_name="test_gpt")
+service_context = ServiceContext.from_defaults(llm=st.session_state.llm,embed_model=st.session_state.embedding,)
+
 
 if "company_desc" not in st.session_state.keys(): # Initialize the chat message history
     st.session_state.company_desc = wikipedia.summary("q_cells", sentences=5)
@@ -126,9 +131,6 @@ def org_news_to_summary(org_news_txt):
     return org_news_txt_summary.content, scores, scores2
 
 
-embedding = AzureOpenAIEmbeddings(azure_deployment="embedding_model")
-st.session_state.llm = AzureChatOpenAI(temperature = 0, deployment_name="test_gpt")
-service_context = ServiceContext.from_defaults(llm=st.session_state.llm,embed_model=embedding,)
 
 
 if "messages" not in st.session_state.keys(): # Initialize the chat message history
