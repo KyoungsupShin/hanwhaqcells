@@ -27,6 +27,7 @@ os.environ["AZURE_OPENAI_ENDPOINT"] = "https://qcells-us-test-openai.openai.azur
 os.environ["AZURE_OPENAI_API_KEY"] = "70d67d8dd17f436b9c1b4e38d2558d50"
 os.environ["OPENAI_API_VERSION"] = "2023-07-01-preview"
 os.environ['ACTIVELOOP_TOKEN'] = 'eyJhbGciOiJIUzUxMiIsImlhdCI6MTcwNTIxMjk0MCwiZXhwIjoxNzM2ODM1MzM1fQ.eyJpZCI6Imt5b3VuZ3N1cDg4MDMifQ.KAo14SA3CNMkK68YG9pFiIrShZBqoK9ElOMfyQh8HiBfn9rsEdZneTLQOBQi1kHBjzndbYtOju-FceXx_Rv83A'
+
 if "company_desc" not in st.session_state.keys(): # Initialize the chat message history
     st.session_state.company_desc = wikipedia.summary("q_cells", sentences=5)
 

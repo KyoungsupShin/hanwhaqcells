@@ -8,7 +8,7 @@ from llama_index.retrievers import QueryFusionRetriever
 from llama_index.query_engine import RetrieverQueryEngine, PandasQueryEngine
 import nest_asyncio
 from llama_index.vector_stores import ChromaVectorStore
-from llama_index import StorageContext, load_index_from_storage, VectorStoreIndex, set_global_service_context, VectorStoreIndex, SimpleDirectoryReader, ServiceContext
+from llama_index import StorageContext, load_index_from_storage, VectorStoreIndex, VectorStoreIndex, SimpleDirectoryReader, ServiceContext
 from llama_index.schema import Document, TextNode
 __import__('pysqlite3')
 import sys
@@ -24,8 +24,10 @@ from llama_index.vector_stores.types import (
     FilterOperator,
 )
 import sys
+from llama_index import ServiceContext
 sys.path.append("/mount/src/hanwhaqcells/pages/utils")
-from utils.web_surf import GoogleSearchToolSpec
+sys.path.append("utils")
+from web_surf import GoogleSearchToolSpec
 
 
 nest_asyncio.apply()
@@ -36,8 +38,13 @@ os.environ['ACTIVELOOP_TOKEN'] = 'eyJhbGciOiJIUzUxMiIsImlhdCI6MTcwNTIxMjk0MCwiZX
 
 embedding = AzureOpenAIEmbeddings(azure_deployment="embedding_model")
 llm = AzureChatOpenAI(temperature = 0, deployment_name="test_gpt")
-service_context = ServiceContext.from_defaults(llm=llm,embed_model=embedding,)
-set_global_service_context(service_context)
+# service_context = ServiceContext.from_defaults(llm=llm,embed_model=embedding,)
+# set_global_service_context(service_context)
+# service_context = llama_index.set_global_service_context(service_context)
+# service_context = ServiceContext.from_defaults(
+#   llm=llm,
+#   embed_model=embedding,
+# )
 web_surfer = GoogleSearchToolSpec(key = 'AIzaSyBZaepCCskamC_j3aBLnUNfOTRcpBgNteU',
                         engine = 'd18770dfc867442e9',
                         num = 5)
