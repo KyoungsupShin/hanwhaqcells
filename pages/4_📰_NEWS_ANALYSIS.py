@@ -21,7 +21,7 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import chromadb
 
-wiki_loader = download_loader("WikipediaReader",custom_path='./')
+wiki_loader = download_loader("WikipediaReader", custom_path='./')
 wiki_loader = wiki_loader()
 
 os.environ["AZURE_OPENAI_ENDPOINT"] = "https://qcells-us-test-openai.openai.azure.com/"
