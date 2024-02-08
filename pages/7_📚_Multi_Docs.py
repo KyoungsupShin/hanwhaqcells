@@ -10,6 +10,9 @@ from web_surf import GoogleSearchToolSpec
 from web_crack import RemoteDepthReader
 from llama_hub.file.pymu_pdf.base import PyMuPDFReader
 from llama_index import GPTVectorStoreIndex, SimpleDirectoryReader, Document
+script_dir = os.path.dirname(__file__)
+st_abs_file_path = os.path.join(script_dir, "static/")
+
 import fitz
 from llama_hub.youtube_transcript import YoutubeTranscriptReader
 from llama_index import download_loader

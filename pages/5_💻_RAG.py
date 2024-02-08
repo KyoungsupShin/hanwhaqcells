@@ -21,7 +21,7 @@ from llama_index.vector_stores.types import (
     FilterOperator,
 )
 import sys
-sys.path.append("./utils")
+sys.path.append("utils")
 from web_surf import GoogleSearchToolSpec
 
 
@@ -43,7 +43,7 @@ st.set_page_config(page_title="RAG",  layout="wide",  page_icon="⛅")
 
 @st.cache_data
 def get_UN_data():
-    df = pd.read_csv("../../RPA/script/merged.csv")
+    df = pd.read_csv("data/20240207.csv")
     return df
 
 def load_data():
