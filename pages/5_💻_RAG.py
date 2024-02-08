@@ -36,8 +36,10 @@ os.environ["AZURE_OPENAI_API_KEY"] = "70d67d8dd17f436b9c1b4e38d2558d50"
 os.environ["OPENAI_API_VERSION"] = "2023-07-01-preview"
 os.environ['ACTIVELOOP_TOKEN'] = 'eyJhbGciOiJIUzUxMiIsImlhdCI6MTcwNTIxMjk0MCwiZXhwIjoxNzM2ODM1MzM1fQ.eyJpZCI6Imt5b3VuZ3N1cDg4MDMifQ.KAo14SA3CNMkK68YG9pFiIrShZBqoK9ElOMfyQh8HiBfn9rsEdZneTLQOBQi1kHBjzndbYtOju-FceXx_Rv83A'
 
-embedding = AzureOpenAIEmbeddings(azure_deployment="embedding_model")
-llm = AzureChatOpenAI(temperature = 0, deployment_name="test_gpt")
+
+st.session_state.embedding = AzureOpenAIEmbeddings(azure_deployment="embedding_model")
+st.session_state.llm = AzureChatOpenAI(temperature = 0, deployment_name="test_gpt")
+service_context = ServiceContext.from_defaults(llm=st.session_state.llm,embed_model=st.session_state.embedding,)
 
 
 web_surfer = GoogleSearchToolSpec(key = 'AIzaSyBZaepCCskamC_j3aBLnUNfOTRcpBgNteU',
