@@ -21,7 +21,7 @@ from llama_index.vector_stores.types import (
     FilterOperator,
 )
 import sys
-sys.path.append("utils")
+sys.path.append("/mount/src/hanwhaqcells/pages/utils")
 from utils.web_surf import GoogleSearchToolSpec
 
 
