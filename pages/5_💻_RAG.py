@@ -28,7 +28,7 @@ from llama_index import ServiceContext
 sys.path.append("/mount/src/hanwhaqcells/pages/utils")
 sys.path.append("utils")
 from web_surf import GoogleSearchToolSpec
-
+from chromadb.config import Settings
 
 nest_asyncio.apply()
 os.environ["AZURE_OPENAI_ENDPOINT"] = "https://qcells-us-test-openai.openai.azure.com/"
@@ -55,7 +55,10 @@ def get_UN_data():
 
 def load_data():
     with st.spinner(text="Loading and indexing the Streamlit docs."):
-        db2 = chromadb.PersistentClient(path="../db/pvmagazine_db")
+        
+        db2 = chromadb.HttpClient(host='4.242.8.48', port=8000, settings=Settings(chroma_client_auth_provider="chromadb.auth.basic.BasicAuthClientProvider",chroma_client_auth_credentials="qcells:qcells")
+
+        # db2 = chromadb.PersistentClient(path="../db/pvmagazine_db")
         chroma_collection = db2.get_or_create_collection("pv_magazine")
         vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
         index = VectorStoreIndex.from_vector_store(vector_store,service_context=service_context, similarity_top_k=10, use_async=True)        
