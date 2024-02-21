@@ -56,7 +56,6 @@ def get_UN_data():
 def load_data():
     with st.spinner(text="Loading and indexing the Streamlit docs."):
         db2 = chromadb.HttpClient(host='4.242.8.48', port=8000, settings=Settings(chroma_client_auth_provider="chromadb.auth.basic.BasicAuthClientProvider",chroma_client_auth_credentials="qcells:qcells"))
-
         # db2 = chromadb.PersistentClient(path="../db/pvmagazine_db")
         chroma_collection = db2.get_or_create_collection("pv_magazine")
         vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
