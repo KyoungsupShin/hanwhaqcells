@@ -57,9 +57,9 @@ def load_data():
     with st.spinner(text="Loading and indexing the Streamlit docs."):
         db2 = chromadb.HttpClient(host='4.242.8.48', port=8000, settings=Settings(chroma_client_auth_provider="chromadb.auth.basic.BasicAuthClientProvider",chroma_client_auth_credentials="qcells:qcells"))
         # db2 = chromadb.PersistentClient(path="../db/pvmagazine_db")
-        chroma_collection = db2.get_or_create_collection("pv_magazine")
+        chroma_collection = db2.get_create_collection("pv_magazine_sentence_split")
         vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
-        index = VectorStoreIndex.from_vector_store(vector_store,service_context=service_context, similarity_top_k=10, use_async=True)        
+        index = VectorStoreIndex.from_vector_store(vector_store,service_context=service_context, similarity_top_k=5, use_async=True)        
         chat_engine = index.as_chat_engine(chat_mode="condense_plus_context", 
                                         filters = st.session_state.filters,
                                             context_prompt=(
