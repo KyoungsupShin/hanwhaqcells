@@ -12,7 +12,7 @@ from llama_index.core.chat_engine.condense_question import CondenseQuestionChatE
 from llama_index.core.llms import ChatMessage, MessageRole
 from llama_index.core.prompts import PromptTemplate
 from llama_index.core import SummaryIndex, get_response_synthesizer, StorageContext, load_index_from_storage, VectorStoreIndex, set_global_service_context, SimpleDirectoryReader, ServiceContext, GPTVectorStoreIndex, Document
-import Phoenix as px
+# import Phoenix as px
 from llama_index.core.vector_stores import MetadataFilters, MetadataFilter,FilterOperator
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.core import set_global_handler

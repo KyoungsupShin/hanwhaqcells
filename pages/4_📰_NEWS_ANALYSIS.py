@@ -7,19 +7,19 @@ from dateutil.relativedelta import relativedelta # to add days or years
 import pandas as pd
 import os 
 import wikipedia
-from llama_index import download_loader
-from llama_index.vector_stores import ChromaVectorStore
+from llama_index.core import download_loader
 from random import randint
 from langchain_openai import AzureOpenAIEmbeddings, AzureChatOpenAI
 from langchain.output_parsers import ResponseSchema
 from langchain.output_parsers import StructuredOutputParser
 from langchain.prompts import ChatPromptTemplate
-from llama_index import StorageContext, load_index_from_storage, VectorStoreIndex, set_global_service_context, VectorStoreIndex, SimpleDirectoryReader, ServiceContext
+from llama_index.core import StorageContext, load_index_from_storage, VectorStoreIndex, set_global_service_context, VectorStoreIndex, SimpleDirectoryReader, ServiceContext
 from langchain.memory import ChatMessageHistory
 __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import chromadb
+from llama_index.vector_stores.chroma import ChromaVectorStore
 wiki_loader = download_loader("WikipediaReader", custom_path='./wikipedia')
 wiki_loader = wiki_loader()
 

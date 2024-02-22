@@ -2,21 +2,21 @@ import streamlit as st
 import os 
 from langchain_openai import AzureOpenAIEmbeddings, AzureChatOpenAI
 import nest_asyncio
-from llama_index import set_global_service_context, ServiceContext
+from llama_index.core import set_global_service_context, ServiceContext
 import sys
 sys.path.append("./utils")
 from web_catch import BeautifulSoupWebReader
 from web_surf import GoogleSearchToolSpec
 from web_crack import RemoteDepthReader
 from llama_hub.file.pymu_pdf.base import PyMuPDFReader
-from llama_index import GPTVectorStoreIndex, SimpleDirectoryReader, Document
+from llama_index.core import GPTVectorStoreIndex, SimpleDirectoryReader, Document
 script_dir = os.path.dirname(__file__)
 st_abs_file_path = os.path.join(script_dir, "static/")
 
 import fitz
 from llama_hub.youtube_transcript import YoutubeTranscriptReader
-from llama_index import download_loader
-from llama_index.node_parser import SentenceWindowNodeParser
+from llama_index.core import download_loader
+from llama_index.core.node_parser import SentenceWindowNodeParser
 from pathlib import Path
 import json
 

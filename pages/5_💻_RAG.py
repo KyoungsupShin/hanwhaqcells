@@ -1,15 +1,15 @@
 import streamlit as st
 import os 
 from langchain_openai import AzureOpenAIEmbeddings, AzureChatOpenAI
-from llama_index.llms import AzureOpenAI
-from llama_index.embeddings import AzureOpenAIEmbedding
-from llama_index.storage.storage_context import StorageContext
-from llama_index.retrievers import QueryFusionRetriever
-from llama_index.query_engine import RetrieverQueryEngine, PandasQueryEngine
+from llama_index.llms.azure_openai import AzureOpenAI
+from llama_index.embeddings.azure_openai import AzureOpenAIEmbedding
+from llama_index.core.storage.storage_context import StorageContext
+from llama_index.core.retrievers import QueryFusionRetriever
+from llama_index.core.query_engine import RetrieverQueryEngine, PandasQueryEngine
 import nest_asyncio
-from llama_index.vector_stores import ChromaVectorStore
-from llama_index import StorageContext, load_index_from_storage, VectorStoreIndex, VectorStoreIndex, SimpleDirectoryReader, ServiceContext
-from llama_index.schema import Document, TextNode
+
+from llama_index.core import StorageContext, load_index_from_storage, VectorStoreIndex, VectorStoreIndex, SimpleDirectoryReader, ServiceContext
+from llama_index.core.schema import Document, TextNode
 __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
@@ -18,15 +18,15 @@ import numpy as np
 import datetime as dt
 from dateutil.relativedelta import relativedelta # to add days or years
 import pandas as pd
-from llama_index.vector_stores.types import (
+from llama_index.vector_stores.chroma import ChromaVectorStore
+from llama_index.core.vector_stores.types import (
     MetadataFilter,
     MetadataFilters,
     FilterOperator,
 )
 import sys
-from llama_index import ServiceContext
-sys.path.append("/mount/src/hanwhaqcells/pages/utils")
-sys.path.append("utils")
+from llama_index.core import ServiceContext
+sys.path.append("/workspaces/hanwhaqcells/utils")
 from web_surf import GoogleSearchToolSpec
 from chromadb.config import Settings
 
